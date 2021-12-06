@@ -9,20 +9,22 @@ import Footer from './components/footer';
 import Form from './components/form';
 import Results from './components/results';
 import { useState } from 'react';
+import axios from 'axios';
+
+// API_LINK = https://pokeapi.co/api/v2/pokemon
 
 export default function App(){
 
   const [data, setData] = useState(null);
   const [requestParams, setRequestParams] = useState({})
 
-  let callApi = (requestParams) => {
+  let callApi = async (requestParams) => {
     // mock output
+    const response = await axios.get(requestParams.url)
+
     const data = {
-      count: 2,
-      results: [
-        {name: 'fake thing 1', url: 'http://fakethings.com/1'},
-        {name: 'fake thing 2', url: 'http://fakethings.com/2'},
-      ],
+      count: response.data.results.length,
+      results: response.data.results,
     };
     setData(data)
     setRequestParams(requestParams)
@@ -33,7 +35,9 @@ export default function App(){
       <Header />
       <div>Request Method: {requestParams.method}</div>
       <div>URL: {requestParams.url}</div>
+      
       <Form handleApiCall={callApi} />
+
       <Results data={data} />
       <Footer />
     </React.Fragment>

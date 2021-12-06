@@ -1,4 +1,4 @@
-$backgroundColor:rgb(111,12,66);
+$backgroundColor:cyan;
 
 html, body {
   height: 100%;
@@ -30,5 +30,16 @@ body {
     padding: 0;
     margin: 0;
     text-align: center;
+  }
+  .numberButton
+  {
+    padding:20px;
+    width:100px;
+  }
+  p{
+    font-size: 24px;
+  }
+  div{
+    font-size: 18px;
   }
 }
