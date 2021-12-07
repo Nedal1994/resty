@@ -3,6 +3,8 @@ import { useState } from 'react';
 
 import './form.scss';
 
+// API_LINK = 'https://pokeapi.co/api/v2/pokemon'
+
 export default function Form(props) {
 
   const [data, setData] = useState('get');
@@ -18,8 +20,10 @@ export default function Form(props) {
       method: data,
       url: e.target.url.value
     }
+
     console.log(results);
     props.handleApiCall(results)
+    
   }
 
   return (
@@ -33,11 +37,11 @@ export default function Form(props) {
       <label className="methods">
         <span data-testid='get-button' onClick={() => { getData }} id="get">GET</span>
 
-        <span data-testid='post-button' onClick={() => { getData }} id="post">POST</span>
+        <span data-testid='post-button' onClick={() => { setData('post') }} id="post">POST</span>
 
-        <span data-testid='put-button' onClick={() => { getData }} id="put">PUT</span>
+        <span data-testid='put-button' onClick={() => { setData('put') }} id="put">PUT</span>
 
-        <span data-testid='delete-button' onClick={() => { getData }} id="delete">DELETE</span>
+        <span data-testid='delete-button' onClick={() => { setData('delete') }} id="delete">DELETE</span>
 
       </label>
     </form>
